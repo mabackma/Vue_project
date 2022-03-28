@@ -1,5 +1,5 @@
 <script setup>
-const message = "Second update"
+const message = "Third update"
 const loggedIn = false
 </script>
 
