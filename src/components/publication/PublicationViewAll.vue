@@ -1,6 +1,6 @@
 <script setup>
 const message = "Tämä on testi."
-const loggedIn = true
+const loggedIn = false
 </script>
 
 <template>
