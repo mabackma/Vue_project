@@ -1,5 +1,5 @@
 <script setup>
-const message = "Tämä on ensimmäinen päivitys!"
+const message = "Second update"
 const loggedIn = false
 </script>
 
