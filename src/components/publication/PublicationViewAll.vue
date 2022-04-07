@@ -1,17 +1,84 @@
 <script setup>
-const message = "Third update"
-const loggedIn = false
-</script>
+// Tuodaan vue:sta ref, eli funktio reaktiivisen datan luomiseksi
+import { ref, reactive } from 'vue';
+import PublicationView from './PublicationView.vue';
+ 
+// reaktiivinen lista julkaisudataa
+// jos tämä muuttuu, päivitetään sisältö automaattisesti ulkoasuun
+const publications = ref([])
 
+const state = reactive({
+    error: false
+})
+ 
+// Tehdään asynkroninen funktio jotta voidaan 
+// käsitellä ei-tosiaikaista dataa
+const getAllPublications = async () => {
+ 
+    try {
+        // Haetaan selaimen fetch työkalua käyttämällä data kurssiprojektin REST rajapinnasta.
+        // Asetetaan vastaus response nimiseen muuttujaan, kun await on saanut vastauksen palvelimelta
+        const response = await fetch('https://vara.onrender.com/api/publications')
+ 
+        // muutetaan data JSON -muotoon
+        const data = await response.json()
+ 
+        // jos tulee jotain muutakuin 200 OK 
+        if (response.status > 300) {
+ 
+            if (response.status == 404) {
+                throw new Error("Dataa ei löytynyt.")
+            }
+ 
+            throw new Error(data.msg)
+        }
+ 
+        // pistetään data talteen reaktiiviseen publications-muuttujaan (päivittää automaattisesti ulkoasun)
+        publications.value = data.publications
+    } catch (e) {
+        //console.log(e)
+        state.error = true
+    }
+ 
+}
+ 
+// kutsutaan funktiota joka hakee rajapinnasta dataa
+getAllPublications()
+ 
+</script>
+ 
 <template>
     <h1>PublicationViewAll OK!</h1>
-    <p>{{ message }}</p>
-    <h1 v-if="loggedIn">LoggedIn on TRUE!</h1>
-    <h1 v-else>LoggedIn on false :(</h1>
+    <div v-if="state.error">Valitettavasti datan lataaminen ei onnistunut.</div>
+    <div v-else class="container">
+        <div class="item" v-for="publication, key in publications" :key="key">
+            {{ key + 1 }}
+            <PublicationView :publication="publication"></PublicationView>
+        </div>
+    </div>
 </template>
-
-<style>
-    body {
-        margin: 30px;
-    }
+ 
+<style scoped>
+img {
+    width: 400px;
+}
+ 
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: gray;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+body {
+    margin: 30px;
+}
 </style>
