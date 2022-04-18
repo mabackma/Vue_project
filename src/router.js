@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import PublicationViewAll from './components/publication/PublicationViewAll.vue'
 import UsersView from './components/user/UsersView.vue'
 
-export const router = createRouter({
+export const router1 = createRouter({
     history: createWebHistory(),
     routes: [
         {
