@@ -36,15 +36,15 @@ const createNewPublication = () => {
 <template>
     <div class="create-post">
         <br>
-        <label>Otsikko</label>
+        <label><b>Otsikko</b></label>
         <small>{{ isDataValid.titleValidation }}</small>
         <input v-model="publicationData.title" type="text">
         <br>
-        <label>Kuvaus</label>
+        <label><b>Kuvaus</b></label>
         <small>{{ isDataValid.descriptionValidation }}</small>
         <input v-model="publicationData.description" type="text">
         <br>
-        <label>URL</label>
+        <label><b>URL</b></label>
         <small>{{ isDataValid.urlValidation }}</small>
         <input v-model="publicationData.url" type="text">
         <br>
