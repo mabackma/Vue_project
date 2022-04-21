@@ -3,6 +3,7 @@
 // import { ref, reactive } from 'vue';
 import PublicationView from './PublicationView.vue';
 import { publicationService } from '../../services/publicationService'
+import { useRouter } from 'vue-router';
 
 
 /*
@@ -51,15 +52,18 @@ getAllPublications()
 
 const { data, error, isFinished} = publicationService.useGetAll()
 
+const router = useRouter()
+
 </script>
  
 <template>
-    <h1>Posts:</h1>
+    <h1>Postaukset:</h1>
     <div v-if="error">Valitettavasti datan lataaminen ei onnistunut.</div>
     <div v-else-if="!isFinished">Ladataan...</div>
     <template v-else-if="data?.publications">
         <div class="container">
-            <div class="item" v-for="publication, key in data.publications" :key="key">
+            <div class="item" @click="router.push('/publication/' + publication._id)" 
+            v-for="publication, key in data.publications" :key="key">
                 {{ key + 1 }}
                 <PublicationView :publication="publication"></PublicationView>
             </div>

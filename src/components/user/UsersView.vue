@@ -2,7 +2,7 @@
 </script>
  
 <template>
-    <h1>Users:</h1>
+    <h1>Käyttäjät:</h1>
 </template>
  
 <style scoped>

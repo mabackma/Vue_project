@@ -16,4 +16,10 @@
 img {
     width: 400px;
 }
+
+.item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>

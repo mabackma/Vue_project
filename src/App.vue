@@ -37,7 +37,7 @@ const darkMode = () => {
 </template>
 
 <style>
-h1{
+h1, h2{
     margin: 30px;
 }
 
