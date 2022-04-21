@@ -63,8 +63,7 @@ const router = useRouter()
     <template v-else-if="data?.publications">
         <div class="container">
             <div class="item" @click="router.push('/publication/' + publication._id)" 
-            v-for="publication, key in data.publications" :key="key">
-                {{ key + 1 }}
+            v-for="publication in data.publications">
                 <PublicationView :publication="publication"></PublicationView>
             </div>
         </div>
