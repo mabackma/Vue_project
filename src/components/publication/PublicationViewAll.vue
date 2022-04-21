@@ -1,8 +1,11 @@
 <script setup>
 // Tuodaan vue:sta ref, eli funktio reaktiivisen datan luomiseksi
-import { ref, reactive } from 'vue';
+// import { ref, reactive } from 'vue';
 import PublicationView from './PublicationView.vue';
- 
+import { publicationService } from '../../services/publicationService'
+
+
+/*
 // reaktiivinen lista julkaisudataa
 // jos tämä muuttuu, päivitetään sisältö automaattisesti ulkoasuun
 const publications = ref([])
@@ -44,18 +47,24 @@ const getAllPublications = async () => {
  
 // kutsutaan funktiota joka hakee rajapinnasta dataa
 getAllPublications()
- 
+*/
+
+const { data, error, isFinished} = publicationService.useGetAll()
+
 </script>
  
 <template>
     <h1>PublicationViewAll OK!</h1>
-    <div v-if="state.error">Valitettavasti datan lataaminen ei onnistunut.</div>
-    <div v-else class="container">
-        <div class="item" v-for="publication, key in publications" :key="key">
-            {{ key + 1 }}
-            <PublicationView :publication="publication"></PublicationView>
+    <div v-if="error">Valitettavasti datan lataaminen ei onnistunut.</div>
+    <div v-else-if="!isFinished">Ladataan...</div>
+    <template v-else-if="data?.publications">
+        <div class="container">
+            <div class="item" v-for="publication, key in data.publications" :key="key">
+                {{ key + 1 }}
+                <PublicationView :publication="publication"></PublicationView>
+            </div>
         </div>
-    </div>
+    </template>
 </template>
  
 <style scoped>
