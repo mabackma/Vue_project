@@ -54,7 +54,7 @@ const { data, error, isFinished} = publicationService.useGetAll()
 </script>
  
 <template>
-    <h1>PublicationViewAll OK!</h1>
+    <h1>Posts:</h1>
     <div v-if="error">Valitettavasti datan lataaminen ei onnistunut.</div>
     <div v-else-if="!isFinished">Ladataan...</div>
     <template v-else-if="data?.publications">
@@ -76,10 +76,12 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: gray;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-bottom: 20px;
+    background: darkcyan;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: bisque;
 }
 .container {
     display: flex;

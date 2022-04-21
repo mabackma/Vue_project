@@ -16,9 +16,4 @@
 img {
     width: 400px;
 }
-
-.template {
-    font-family: "Arial";
-    font-size: 14pt;
-}
 </style>

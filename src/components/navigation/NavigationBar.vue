@@ -14,12 +14,13 @@ import { RouterLink } from "vue-router"
 .nav {
     display: flex;
     justify-content: center;
-    background-color: aqua;
+    background-color: darkcyan;
 }
 
 a {
     margin: 20px;
     font-size: 18px;
     font-weight: bolder;
+    color: bisque;
 }
 </style>
