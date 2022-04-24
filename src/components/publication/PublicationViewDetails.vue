@@ -7,7 +7,7 @@ const props = defineProps({
     publicationId: String
 })
 
-const {data, error, isFinished} = publicationService.useGetById(props.publicationId)
+const {data, error, isFinished} = publicationService.useGetById(props.publicationId) //props kertoo että publicationId on String tyyppinen
 
 </script>
 

@@ -36,7 +36,8 @@ const darkMode = () => {
 </body>
 </template>
 
-<style>
+<!--Alla olevat tyylit ovat käytössä kaikissa tiedostoissa-->
+<style> 
 h1, h2{
     margin: 30px;
 }

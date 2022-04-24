@@ -3,6 +3,7 @@ import { reactive, computed } from "vue"
 import { publicationService } from "../../services/publicationService"
 import { useRouter } from "vue-router";
 
+// Kenttiä voi muuttaa tekstikentissä
 const publicationData = reactive({
     title: "",
     description: "",
@@ -13,13 +14,16 @@ const publicationData = reactive({
 
 const router = useRouter()
 
+// Palauttaa objektin
 const validationObject = computed(() => {
 
+    // Nämä arvot ovat true tai false
     const titleValidation = publicationData.title.length > 2
     const descriptionValidation = publicationData.description.length < 1000
     const urlValidation = publicationData.url.includes("https://")
 
     return {
+        // Jos true niin "OK", muulloin toinen vaihtoehto
         titleValidation: titleValidation ? "OK" : "Otsikon tätytyy olla ainakin kolme merkkiä pitkä",
         descriptionValidation: descriptionValidation ? "OK" : "Kuvauksen teksti on liian pitkä",
         urlValidation: urlValidation ? "OK" : "Vain https osoitteet ovat sallittu",

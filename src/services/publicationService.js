@@ -5,8 +5,8 @@ export const publicationService = {
         return useApi('/publications').json()
     },
     useGetById(publicationId){
-        return useApi(`/publications/${publicationId}`).json()
-    },
+        return useApi(`/publications/${publicationId}`).json()  //haetaan back-endistä, eli osoitteesta
+    },                                                          //https://vara.onrender.com/api/publications/:publicationId
     usePost(payload){
         return useApi('./publications').post(payload).json()
     }
