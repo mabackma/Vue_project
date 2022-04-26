@@ -6,8 +6,8 @@ import { authService } from '../../services/authService'
 // sama avain kun providessa, eli saa arvon showLoginView NavigationBar.vue tiedostosta
 const showLoginView = inject('showLogin')  
 
+// Nämä kentät täytetään formin sisällä olevista tekstikentistä.
 const credentials = reactive({
-
     username: "",
     password: ""
 })
@@ -19,14 +19,16 @@ onClickOutside(target, ()=>{
 })
 
 const login = async ()=>{
+
     await authService.useLogin(credentials)
+
     credentials.username = "",
     credentials.password = ""
 }
 </script>
 
 <template>
-<form ref="target" class="login" @submit.prevent="login">  <!-- estää sivun lataamisen uudelleen kun painaa submittia -->
+<form ref="target" class="login" @submit.prevent="login">  <!-- prevent estää sivun lataamisen uudelleen kun painaa submittia -->
     <label>Käyttäjänimi</label>
     <input v-model="credentials.username" type="text">
 

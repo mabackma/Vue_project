@@ -14,7 +14,6 @@ export const authService = {
 
     async useLogout(){
         await useApi('/logout').post()
-
         globalState.accessToken = null
     }
 }

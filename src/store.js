@@ -5,7 +5,7 @@ export const globalState = reactive({
     accessToken: null
 })
 
-// true silloin kun globalStatella on accessToken
+// true silloin kun globalState saa accessTokenin
 export const isAuth = computed(() =>{
     return globalState.accessToken != null
 })

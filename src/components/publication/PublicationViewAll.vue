@@ -74,18 +74,7 @@ const router = useRouter()
 img {
     width: 400px;
 }
- 
-.item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: darkcyan;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 12px;
-    font-weight: bold;
-    color: bisque;
-}
+
 .container {
     display: flex;
     flex-direction: column;
