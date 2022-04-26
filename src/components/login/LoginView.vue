@@ -1,10 +1,13 @@
 <script setup>
 import { onClickOutside } from '@vueuse/core';
 import { inject, reactive, ref } from 'vue';
+import { authService } from '../../services/authService'
 
-const showLoginView = inject('showLogin')
+// sama avain kun providessa, eli saa arvon showLoginView NavigationBar.vue tiedostosta
+const showLoginView = inject('showLogin')  
 
 const credentials = reactive({
+
     username: "",
     password: ""
 })
@@ -15,17 +18,22 @@ onClickOutside(target, ()=>{
     showLoginView.value = false
 })
 
+const login = async ()=>{
+    await authService.useLogin(credentials)
+    credentials.username = "",
+    credentials.password = ""
+}
 </script>
 
 <template>
-<form class="login" ref="target">
+<form ref="target" class="login" @submit.prevent="login">  <!-- estää sivun lataamisen uudelleen kun painaa submittia -->
     <label>Käyttäjänimi</label>
     <input v-model="credentials.username" type="text">
 
     <label>Salasana</label>
-    <input v-model="credentials.password" type="password">
+    <input v-model="credentials.password" type="password">  <!-- selain ymmärtää että kyseessä on salasana -->
     <br>
-    <button type="submit">Kirjaudu</button>
+    <button type="submit">Kirjaudu</button>  <!-- submit lähettää kaiken datan formin sisältä -->
 </form>
 </template>
 

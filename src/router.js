@@ -26,7 +26,7 @@ export const router = createRouter({
             path: "/publication/:publicationId",
             name: "Yksittäinen postaus",
             component: PublicationViewDetails,
-            props: true   // Tämä sallii kohdan :publicationId osoitteeseen (publicationId tyyppiä String)
+            props: true  
         }
     ]
 })
