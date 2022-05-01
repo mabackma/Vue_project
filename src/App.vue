@@ -1,7 +1,7 @@
 <script setup>
 import {RouterView} from 'vue-router'
-import NavigationBar from './components/navigation/NavigationBar.vue';
 import { ref } from 'vue'
+import BaseLayout from './components/layout/BaseLayout.vue'
 
 const color1 = ref('white')
 const color2 = ref('black')
@@ -26,34 +26,19 @@ const darkMode = () => {
 
 <template>
 <body>
-    <navigation-bar></navigation-bar>
-    <h4>Dark Mode 
-    <button class="dark-button" @click="darkMode">
-        On/Off
-    </button> 
-    </h4> 
-    <router-view></router-view>
+    <BaseLayout>
+        <router-view></router-view>
+    </BaseLayout>
 </body>
 </template>
 
 <!--Alla olevat tyylit ovat käytössä kaikissa tiedostoissa-->
 <style> 
-h1, h2{
-    margin: 30px;
-}
-
-h4{
-    margin: 10px;
-}
-
-.dark-button{
-    border-radius: 8px;
-    margin: 5px;
+* {
+    margin: 0px;
 }
  
 body {
-    background-color: v-bind('color1');
-    color: v-bind('color2');
     min-height: 100vh;   
 }
 </style>

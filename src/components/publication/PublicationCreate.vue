@@ -49,28 +49,19 @@ const createNewPublication = async () => {
 </script>
  
 <template>
-    <div class="create-post">
-        <br>
-        <label><b>Otsikko</b></label>
-        <small>{{ validationObject.titleValidation }}</small>
-        <input v-model="publicationData.title" type="text">
-        <br>
-        <label><b>Kuvaus</b></label>
-        <small>{{ validationObject.descriptionValidation }}</small>
-        <input v-model="publicationData.description" type="text">
-        <br>
-        <label><b>URL</b></label>
-        <small>{{ validationObject.urlValidation }}</small>
-        <input v-model="publicationData.url" type="text">
-        <br>
-        <button :disabled="!validationObject.isAllValid" @click="createNewPublication">Lähetä</button>
-    </div>
+    <h2>Lisää uusi</h2>
+    <label><b>Otsikko</b></label>
+    <small>{{ validationObject.titleValidation }}</small>
+    <input v-model="publicationData.title" type="text">
+    <br>
+    <label><b>Kuvaus</b></label>
+    <small>{{ validationObject.descriptionValidation }}</small>
+    <input v-model="publicationData.description" type="text">
+    <br>
+    <label><b>URL</b></label>
+    <small>{{ validationObject.urlValidation }}</small>
+    <input v-model="publicationData.url" type="text">
+    <br>
+    <button :disabled="!validationObject.isAllValid" @click="createNewPublication">Lähetä</button>  
 </template>
  
-<style scoped>
-.create-post{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-</style>

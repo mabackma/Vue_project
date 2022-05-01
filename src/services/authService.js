@@ -3,8 +3,8 @@ import { globalState } from "../store"
 
 
 export const authService = {
-    async useLogin(payload){
-
+    async useLogin(payload){   // Tässä payloadina on credentials joka lähetetään back-endin osoitteeseen
+                               // https://vara.onrender.com/api/login
         const {data, error} = await useApi('/login').post(payload).json()
 
         if(!error.value && data.value){

@@ -10,7 +10,7 @@ const error = ref(false);
  
 <template>
     <template v-if="!error">
-        <div class="item">
+        <div>
             {{ publication.title }}
             <img @error="error = true" :src="publication.url" />
             {{ publication.owner ? publication.owner.username : 'Anonyymi' }}
@@ -23,7 +23,7 @@ img {
     width: 400px;
 }
 
-.item {
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
