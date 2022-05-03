@@ -66,7 +66,7 @@ h1, h2 {
 }
 
 .button-text {
-    top: 82px;
+    top: 62px;
     left: 10px;
     position: fixed;
     font-weight: bold;
@@ -75,7 +75,7 @@ h1, h2 {
 
 .dark-button{
     border-radius: 8px;
-    top: 105px;
+    top: 85px;
     left: 20px;
     position: fixed;
 }
