@@ -67,7 +67,7 @@ h1, h2 {
 
 .button-text {
     top: 82px;
-    left: 20px;
+    left: 10px;
     position: fixed;
     font-weight: bold;
     color: v-bind('color2');
@@ -75,8 +75,8 @@ h1, h2 {
 
 .dark-button{
     border-radius: 8px;
-    top: 80px;
-    left: 108px;
+    top: 105px;
+    left: 20px;
     position: fixed;
 }
 </style>
