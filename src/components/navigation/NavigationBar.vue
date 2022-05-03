@@ -26,6 +26,10 @@ const logout = async()=>{
 </template>
  
 <style scoped>
+.nav {
+    display: flex;
+    justify-content: center;
+}
 a {
     margin: 15px;
     font-size: 20px;

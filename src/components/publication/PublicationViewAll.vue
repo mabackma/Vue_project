@@ -1,54 +1,7 @@
 <script setup>
-// Tuodaan vue:sta ref, eli funktio reaktiivisen datan luomiseksi
-// import { ref, reactive } from 'vue';
 import PublicationView from './PublicationView.vue';
 import { publicationService } from '../../services/publicationService'
 import { RouterLink } from 'vue-router';
-
-
-/*
-// reaktiivinen lista julkaisudataa
-// jos tämä muuttuu, päivitetään sisältö automaattisesti ulkoasuun
-const publications = ref([])
-
-const state = reactive({
-    error: false
-})
- 
-// Tehdään asynkroninen funktio jotta voidaan 
-// käsitellä ei-tosiaikaista dataa
-const getAllPublications = async () => {
- 
-    try {
-        // Haetaan selaimen fetch työkalua käyttämällä data kurssiprojektin REST rajapinnasta.
-        // Asetetaan vastaus response nimiseen muuttujaan, kun await on saanut vastauksen palvelimelta
-        const response = await fetch('https://vara.onrender.com/api/publications')
- 
-        // muutetaan data JSON -muotoon
-        const data = await response.json()
- 
-        // jos tulee jotain muutakuin 200 OK 
-        if (response.status > 300) {
- 
-            if (response.status == 404) {
-                throw new Error("Dataa ei löytynyt.")
-            }
- 
-            throw new Error(data.msg)
-        }
- 
-        // pistetään data talteen reaktiiviseen publications-muuttujaan (päivittää automaattisesti ulkoasun)
-        publications.value = data.publications
-    } catch (e) {
-        //console.log(e)
-        state.error = true
-    }
- 
-}
- 
-// kutsutaan funktiota joka hakee rajapinnasta dataa
-getAllPublications()
-*/
 
 const { data, error, isFinished} = publicationService.useGetAll()
 
@@ -68,3 +21,4 @@ const { data, error, isFinished} = publicationService.useGetAll()
 
     </template>
 </template>
+
