@@ -2,6 +2,7 @@
 import { onClickOutside } from '@vueuse/core';
 import { inject, reactive, ref } from 'vue';
 import { authService } from '../../services/authService'
+import { RouterLink } from 'vue-router';
 
 // sama avain kun providessa, eli saa arvon showLoginView NavigationBar.vue tiedostosta
 const showLoginView = inject('showLogin')  
@@ -35,6 +36,7 @@ const login = async ()=>{
     <label>Salasana</label>
     <input v-model="credentials.password" type="password">  <!-- selain ymmärtää että kyseessä on salasana -->
     <br>
+    <router-link to="/register" @click="showLoginView = false">Rekisteröidy</router-link>
     <button type="submit">Kirjaudu</button>  <!-- submit lähettää kaiken datan formin sisältä -->
 </form>
 </template>

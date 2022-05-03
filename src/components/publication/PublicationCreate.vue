@@ -24,7 +24,7 @@ const validationObject = computed(() => {
 
     return {
         // Jos true niin "OK", muulloin toinen vaihtoehto
-        titleValidation: titleValidation ? "OK" : "Otsikon tätytyy olla ainakin kolme merkkiä pitkä",
+        titleValidation: titleValidation ? "OK" : "Otsikon täytyy olla ainakin kolme merkkiä pitkä",
         descriptionValidation: descriptionValidation ? "OK" : "Kuvauksen teksti on liian pitkä",
         urlValidation: urlValidation ? "OK" : "Vain https osoitteet ovat sallittu",
         isAllValid: titleValidation && descriptionValidation && urlValidation
