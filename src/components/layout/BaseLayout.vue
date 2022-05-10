@@ -78,5 +78,7 @@ h1, h2 {
     top: 85px;
     left: 20px;
     position: fixed;
+    background-color: v-bind('color2');
+    color: v-bind('color1');
 }
 </style>
