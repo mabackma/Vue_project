@@ -18,7 +18,7 @@ import { getNotifications, removeNotificationByKey } from '../../composables/not
 
 </template>
 
-<style scped>
+<style scoped>
 .notification-container{
     position: fixed;
     bottom: 10vh;
@@ -27,7 +27,7 @@ import { getNotifications, removeNotificationByKey } from '../../composables/not
     flex-direction: column;
     align-items: center;
     z-index: 40;
-}
+} 
 
 .notification-item{
     background-color: white;

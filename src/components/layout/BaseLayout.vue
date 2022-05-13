@@ -21,6 +21,7 @@ const darkMode = () => {
         color1.value = 'white'
         color2.value = 'black'
     }
+    
 }
 </script>
 

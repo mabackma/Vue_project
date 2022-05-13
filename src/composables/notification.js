@@ -14,7 +14,7 @@ const setNotificationByType = (message, color) => {
 
     setTimeout(()=>{
         removeNotificationByKey(key)
-    }, 5000)
+    }, 5000) 
 }
 
 export const setError = (errorMsg) => {
