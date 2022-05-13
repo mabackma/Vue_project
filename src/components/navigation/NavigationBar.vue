@@ -4,14 +4,16 @@ import { RouterLink } from "vue-router"
 import { authService } from "../../services/authService";
 import { isAuth } from "../../store";
 import LoginView from "../login/LoginView.vue";
+//import { setError } from '../../composables/notification'
 
 const showLoginView = ref(false)
 
 provide('showLogin', showLoginView)
 
-const logout = async()=>{
-    await authService.useLogout()
+const logout = ()=>{
+    authService.useLogout()
 }
+
 </script>
  
 <template>
@@ -21,6 +23,7 @@ const logout = async()=>{
         <router-link v-if="isAuth" to="/users">Käyttäjät</router-link>
         <a href="#" v-if="isAuth" @click.prevent="logout">Ulos</a>  <!-- .valueta ei tarvitse Vuessa -->
         <a href="#" v-else @click.prevent="showLoginView = !showLoginView">Kirjaudu</a>
+        <!-- <button @click="setError('Testi virhe')">testaa ilmoitus</button> -->
     </div>
     <LoginView v-if="showLoginView && !isAuth"></LoginView>  <!-- tässä kohtaa käytetään providea-->
 </template>

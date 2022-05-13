@@ -13,7 +13,7 @@ const error = ref(false);
         <div>
             {{ user.name }}
             <!--<img @error="error = true" :src="publication.url" /> Tähän käyttäjän kuva-->
-            {{ user.email}}
+            {{ user.email }}
         </div>
     </template>
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import NavigationBar from '../navigation/NavigationBar.vue';
 import { ref } from 'vue'
+import NotificationContainer from '../notification/NotificationContainer.vue';
 
 const color1 = ref('white')
 const color2 = ref('black')
@@ -27,6 +28,7 @@ const darkMode = () => {
 <div class="nav">
     <NavigationBar></NavigationBar>
 </div>
+<NotificationContainer></NotificationContainer>
 <div class="button-text">
     Dark Mode
 </div>
@@ -35,7 +37,6 @@ const darkMode = () => {
 </button> 
 <div class="container">
     <slot>
-
     </slot>
 </div>
 </template>
@@ -66,8 +67,8 @@ h1, h2 {
 }
 
 .button-text {
-    top: 62px;
-    left: 10px;
+    top: 10%;
+    left: 1%;
     position: fixed;
     font-weight: bold;
     color: v-bind('color2');
@@ -75,8 +76,8 @@ h1, h2 {
 
 .dark-button{
     border-radius: 8px;
-    top: 85px;
-    left: 20px;
+    top: 13%;
+    left: 2%;
     position: fixed;
     background-color: v-bind('color2');
     color: v-bind('color1');

@@ -2,6 +2,7 @@
 import {RouterView} from 'vue-router'
 import { ref } from 'vue'
 import BaseLayout from './components/layout/BaseLayout.vue'
+import NotificationContainer from './components/notification/NotificationContainer.vue';
 
 const color1 = ref('white')
 const color2 = ref('black')
@@ -25,11 +26,11 @@ const darkMode = () => {
 </script>
 
 <template>
-<body>
-    <BaseLayout>
-        <router-view></router-view>
-    </BaseLayout>
-</body>
+    <body>  
+        <BaseLayout>
+            <router-view></router-view>
+        </BaseLayout>
+    </body>
 </template>
 
 <!--Alla olevat tyylit ovat käytössä kaikissa tiedostoissa-->

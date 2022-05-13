@@ -26,6 +26,7 @@ const login = async ()=>{
     credentials.username = "",
     credentials.password = ""
 }
+
 </script>
 
 <template>
@@ -37,6 +38,7 @@ const login = async ()=>{
     <input v-model="credentials.password" type="password">  <!-- selain ymmärtää että kyseessä on salasana -->
     <br>
     <router-link to="/register" @click="showLoginView = false">Rekisteröidy</router-link>
+    <br>
     <button type="submit">Kirjaudu</button>  <!-- submit lähettää kaiken datan formin sisältä -->
 </form>
 </template>

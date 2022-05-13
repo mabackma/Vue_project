@@ -1,5 +1,6 @@
 import { useApi } from "../composables/api"
 import { globalState } from "../store"
+import { setSuccess, setError } from '../composables/notification'
 
 
 export const authService = {
@@ -11,12 +12,20 @@ export const authService = {
 
         // jos kaikki ok, niin globalState saa tokenin back-endiltä
         if(!error.value && data.value){
+            setSuccess("Tervetuloa " +  data.value.account.username)
             globalState.accessToken = data.value.access_token
+        }
+        else{
+            setError("Tarkista käyttäjätiedot")
         }
     },
 
-    async useLogout(){
-        await useApi('/logout').post()
-        globalState.accessToken = null
+    useLogout(){
+
+        useApi('/logout').post().onFetchFinally(()=>{
+            globalState.accessToken = null
+            setSuccess("Sinut on kirjattu ulos")
+        })
+
     }
 }
