@@ -1,7 +1,14 @@
 <script setup>
-import { reactive, computed, ref } from "vue"
+import { reactive, computed, provide, ref, watch } from "vue"
 import { useRouter } from "vue-router";
 import { registrationService } from "../../services/registrationService";
+import { setSuccess, setError } from "../../composables/notification";
+import LoginView from "../login/LoginView.vue";
+import { isAuth } from "../../store";
+
+const showLoginView = ref(false)
+
+provide('showLogin', showLoginView)
 
 const userData = reactive({
     username: "",
@@ -48,16 +55,33 @@ const register = async () => {
 
     if(data.value && !error.value && statusCode.value === 200){       
         isRegistrationSuccessful.value = true
+
+        // Näyttää ilmoituksen onnistuneesta rekisteröinnistä
+        setSuccess("Rekisteröityminen onnistui! Nyt voit kirjautua sisään")
+        showLoginView.value = true
     }
     else{
         console.log("Data: ", data.value, "Error: ", error.value, "Statuscode: ", statusCode.value)
+        if (data.value.msg[0].username == "Field value must be unique.")
+            setError("Käyttäjä on jo olemassa")
+        else
+            setError("Virhe on tapahtunut!")
     }
     
 }
+
+watch(isAuth, ()=>{
+    // jos isAuth on true niin siirrytään päänäkymään
+    if(isAuth.value){
+        router.push('/')
+    }
+})
 </script>
 
 <template>
-    <div v-if="isRegistrationSuccessful">Rekisteröityminen onnistui! Nyt voit kirjautua sisään</div>
+    <div v-if="isRegistrationSuccessful">
+        <LoginView  v-if="showLoginView && !isAuth"></LoginView>
+    </div>
     <form v-else @submit.prevent="register">
         <h2>Luo uusi käyttäjä</h2>
         <label><b>Käyttäjätunnus</b></label>

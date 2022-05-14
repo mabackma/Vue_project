@@ -25,7 +25,7 @@ const logout = ()=>{
         <a href="#" v-else @click.prevent="showLoginView = !showLoginView">Kirjaudu</a>
         <!-- <button @click="setError('Testi virhe')">testaa ilmoitus</button> -->
     </div>
-    <LoginView v-if="showLoginView && !isAuth"></LoginView>  <!-- tässä kohtaa käytetään providea-->
+    <LoginView v-if="showLoginView && !isAuth"></LoginView>  <!-- tässä kohtaa käytetään showLoginView provide -->
 </template>
  
 <style scoped>
