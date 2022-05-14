@@ -1,9 +1,10 @@
 <script setup>
-import { reactive, computed } from "vue"
+import { reactive, computed, ref } from "vue"
 import { useRouter } from "vue-router";
+import { registrationService } from "../../services/registrationService";
 
 const userData = reactive({
-    name: "",
+    username: "",
     password: "",
     email: ""
 })
@@ -14,96 +15,75 @@ const rewrite = reactive({
 
 const router = useRouter()
 
-const passwordCheck = () => {
-    
-    let hasNumber = false
-    let hasUpper = false
-    let hasSpecial = false
-    let isLongEnough = false
-    let rewriteMatch = false
-
-    // Tarkastetaan numerot
-    if (userData.password.match(/[0-9]/)) {
-        hasNumber = true
-    } 
-    // Tarkastetaan isot kirjaimet
-    if (userData.password.match(/[A-Z]/)) {
-        hasUpper = true
-    } 
-    // Tarkastetaan erikoismerkit
-    if (userData.password.match(/[!@#$%^&*(),.?":{}|<>]/)) {
-        hasSpecial = true
-    } 
-    // Tarkastetaan salasanan pituus
-    if (userData.password.length >= 8){
-        isLongEnough = true
-    }
-    // Tarkastetaan salasanan uudelleenkirjoitus
-    if (userData.password == rewrite.password){
-        rewriteMatch = true
-    }
-
-    if (hasNumber && hasUpper && hasSpecial && isLongEnough && rewriteMatch){
-        return true
-    }
-
-    return false
-}
-
+// Käyttäjänimi ei saa sisältää erikoismerkkejä. 
+// Tätä käytetään sen tarkistukseen.
+const regex = /^[A-Za-z0-9]+$/
 
 // Palauttaa objektin
 const validationObject = computed(() => {
 
     // Nämä arvot ovat true tai false
-    const nameValidation = userData.name.length > 2
-    const passwordValidation = passwordCheck()
-    const emailValidation = userData.email.includes('@')
+    const nameValidation = userData.username.length > 2 && regex.test(userData.username)
+    const emailValidation = userData.email.includes('@') && userData.email.includes('.')
+    const passwordValidation = userData.password.length >= 8
+    const passwordConfirmed = userData.password === rewrite.password
 
     return {
         // Jos true niin "OK", muulloin toinen vaihtoehto
-        nameValidation: nameValidation ? "OK" : "Nimen täytyy olla ainakin kolme merkkiä pitkä",
-        passwordValidation: passwordValidation ? "OK" : "Salasanassa täytyy olla vähintään yksi iso kirjain, numero ja erikoismerkki. Salasanan täytyy olla vähintään kahdeksan merkkiä pitkä.",
+        nameValidation: nameValidation ? "OK" : "Käyttäjänimi on liian lyhyt tai sisältää erikoismerkkejä.",
         emailValidation: emailValidation ? "OK" : "Vain e-mail osoitteet ovat sallittu",
-        isAllValid: nameValidation && passwordValidation && emailValidation
+        passwordValidation: passwordValidation ? "OK" : "Salasanan täytyy olla vähintään kahdeksan merkkiä pitkä.",
+        passwordConfirmed: passwordConfirmed ? "OK" : "Salasana kirjoitettu väärin",
+        isAllValid: nameValidation && emailValidation && passwordValidation && passwordConfirmed
     }
 })
 
-const createNewUser = async () => {
+const isRegistrationSuccessful = ref(false)
+
+const register = async () => {
 
     if(!validationObject.value.isAllValid) return
 
-    //const {data, error} = await publicationService.usePost(userData)
+    const {data, error, statusCode} = await registrationService.useRegister(userData)
 
-    if(data.value && !error.value){
-        userData.name = ""
-        userData.password = ""
-        userData.email = ""
-
-        router.push('/')
+    if(data.value && !error.value && statusCode.value === 200){       
+        isRegistrationSuccessful.value = true
+    }
+    else{
+        console.log("Data: ", data.value, "Error: ", error.value, "Statuscode: ", statusCode.value)
     }
     
 }
 </script>
 
 <template>
-    <h2>Luo uusi käyttäjä</h2>
-    <label><b>Käyttäjätunnus</b></label>
-    <small>{{ validationObject.nameValidation }}</small>
-    <input v-model="userData.name" type="text">
-    <br>
-    <label><b>Salasana</b></label>
-    <small>{{ validationObject.passwordValidation }}</small>
-    <input v-model="userData.password" type="password">
-    <br>
-    <label><b>Kirjoita salasana uudelleen</b></label>
-    <input v-model="rewrite.password" type="password">
-    <br>
-    <label><b>Sähköposti</b></label>
-    <small>{{ validationObject.emailValidation }}</small>
-    <input v-model="userData.email" type="text">
-    <br>
-    <button :disabled="!validationObject.isAllValid" @click="createNewUser">Lähetä</button>  
+    <div v-if="isRegistrationSuccessful">Rekisteröityminen onnistui! Nyt voit kirjautua sisään</div>
+    <form v-else @submit.prevent="register">
+        <h2>Luo uusi käyttäjä</h2>
+        <label><b>Käyttäjätunnus</b></label>
+        <small>{{ validationObject.nameValidation }}</small>
+        <input v-model="userData.username" type="text">
+        <br>
+        <label><b>Sähköposti</b></label>
+        <small>{{ validationObject.emailValidation }}</small>
+        <input v-model="userData.email" type="email">
+        <br>
+        <label><b>Salasana</b></label>
+        <small>{{ validationObject.passwordValidation }}</small>
+        <input v-model="userData.password" type="password">
+        <br>
+        <label><b>Kirjoita salasana uudelleen</b></label>
+        <small>{{ validationObject.passwordConfirmed }}</small>
+        <input v-model="rewrite.password" type="password">
+        <br>
+        <button type="submit" :disabled="!validationObject.isAllValid">Rekisteröidy</button> 
+    </form> 
 </template>
 
 <style scoped>
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
 </style>
