@@ -62,6 +62,8 @@ const register = async () => {
     }
     else{
         console.log("Data: ", data.value, "Error: ", error.value, "Statuscode: ", statusCode.value)
+
+        // Näyttää ilmoituksen epäonnistuneesta rekisteröinnistä
         if (data.value.msg[0].username == "Field value must be unique.")
             setError("Käyttäjä on jo olemassa")
         else

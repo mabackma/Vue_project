@@ -35,11 +35,8 @@ const darkMode = () => {
 
 <!--Alla olevat tyylit ovat käytössä kaikissa tiedostoissa-->
 <style> 
-* {
-    margin: 0px;
-}
- 
 body {
+    margin: 0px;
     min-height: 100vh;   
 }
 </style>

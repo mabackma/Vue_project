@@ -1,7 +1,22 @@
 <script setup>
 import NavigationBar from '../navigation/NavigationBar.vue';
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import NotificationContainer from '../notification/NotificationContainer.vue';
+
+const width = ref(0)
+
+const setScreenWidth = ()=>{
+    width.value = window.innerWidth
+}
+
+onMounted(()=>{
+    setScreenWidth()
+    window.addEventListener('resize', setScreenWidth)
+})
+
+onUnmounted(()=>{
+    window.removeEventListener('resize', setScreenWidth)
+})
 
 const color1 = ref('white')
 const color2 = ref('black')
@@ -26,19 +41,23 @@ const darkMode = () => {
 </script>
 
 <template>
-<div class="nav">
-    <NavigationBar></NavigationBar>
-</div>
-<NotificationContainer></NotificationContainer>
-<div class="button-text">
-    Dark Mode
-</div>
-<button class="dark-button" @click="darkMode">
-    On/Off
-</button> 
+    <div v-if="width>600" class="nav">
+        <NavigationBar></NavigationBar>
+    </div>
 <div class="container">
-    <slot>
-    </slot>
+    
+    <slot></slot>
+    <NotificationContainer></NotificationContainer>
+    <button v-if="width>600" class="dark-button" @click="darkMode">
+        Dark Mode
+    </button> 
+    <button v-else class="dark-button-mobile" @click="darkMode">
+        DM
+    </button>
+    <div v-if="width<=600" class="nav-mobile">
+        <NavigationBar></NavigationBar>
+    </div>
+
 </div>
 </template>
 
@@ -67,17 +86,28 @@ h1, h2 {
     width: 100%;
 }
 
-.button-text {
-    top: 10%;
-    left: 1%;
+.nav-mobile {
+    display: flex;
+    justify-content: space-evenly;
     position: fixed;
-    font-weight: bold;
-    color: v-bind('color2');
+    background-color: v-bind(color1);
+    width: 100%;
+    bottom: 0px;
+    color: red;
 }
 
 .dark-button{
     border-radius: 8px;
     top: 13%;
+    left: 5%;
+    position: fixed;
+    background-color: v-bind('color2');
+    color: v-bind('color1');
+}
+
+.dark-button-mobile{
+    border-radius: 8px;
+    top: 2%;
     left: 2%;
     position: fixed;
     background-color: v-bind('color2');
