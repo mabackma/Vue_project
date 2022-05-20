@@ -28,6 +28,3 @@ watch(isAuth, ()=>{
     </div>
 </template>
  
-<style scoped>
-
-</style>

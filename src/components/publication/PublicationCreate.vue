@@ -20,7 +20,7 @@ const validationObject = computed(() => {
     // Nämä arvot ovat true tai false
     const titleValidation = publicationData.title.length > 2
     const descriptionValidation = publicationData.description.length < 1000
-    const urlValidation = publicationData.url.includes("https://")
+    const urlValidation = publicationData.url.startsWith("https://")
 
     return {
         // Jos true niin "OK", muulloin toinen vaihtoehto

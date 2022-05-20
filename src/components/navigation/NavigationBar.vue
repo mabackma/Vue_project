@@ -5,7 +5,6 @@ import { authService } from "../../services/authService";
 import { isAuth } from "../../store";
 import LoginView from "../login/LoginView.vue";
 import {Home, Account, Plus, Login, Logout} from 'mdue'
-//import { setError } from '../../composables/notification'
 
 const showLoginView = ref(false)
 
@@ -39,7 +38,6 @@ const logout = ()=>{
         <router-link v-if="isAuth" to="/users">Käyttäjät</router-link>
         <a href="#" v-if="isAuth" @click.prevent="logout">Ulos</a> 
         <a href="#" v-else @click.prevent="showLoginView = !showLoginView">Kirjaudu</a>
-        <!-- <button @click="setError('Testi virhe')">testaa ilmoitus</button> -->
     </div>
 
     <div v-if="width<=600" class="nav-mobile">

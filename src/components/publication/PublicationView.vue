@@ -21,6 +21,7 @@ const error = ref(false);
 <style scoped>
 img {
     width: 400px;
+    margin: 10px
 }
 
 div {
