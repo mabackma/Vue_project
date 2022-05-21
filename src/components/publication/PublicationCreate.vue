@@ -48,12 +48,13 @@ const createNewPublication = async () => {
 
     console.log("visibility: " + publicationData.visibility)
 
+    // Tyhjennetään kentät
     if(data.value && !error.value){
         publicationData.title = ""
         publicationData.description = ""
         publicationData.url = ""
-        publicationData.visibility = 2
-        dataUrl.value = ""
+        publicationData.visibility = 2  // Palautetaan oletusarvoonsa
+        dataUrl.value = ""   // Poistetaan dataUrl
 
         router.push('/')
     }
