@@ -4,7 +4,8 @@ import UsersView from './components/user/UsersView.vue'
 import PublicationCreate from './components/publication/PublicationCreate.vue'
 import PublicationViewDetails from './components/publication/PublicationViewDetails.vue'
 import RegistrationView from './components/registration/RegistrationView.vue'
-import AccountView from './components/user/AccountView.vue'
+import AccountView from './components/account/AccountView.vue'
+import ModifyImageView from './components/account/ModifyImageView.vue'
 import { isAuth } from './store'
 
 export const router = createRouter({
@@ -40,6 +41,11 @@ export const router = createRouter({
             path: "/account",
             name: "Omat tiedot",
             component: AccountView
+        },
+        {
+            path: "/modifyImage",
+            name: "Kuvan muokkaus",
+            component: ModifyImageView
         }
     ],
     scrollBehavior(){

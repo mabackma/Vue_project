@@ -1,7 +1,8 @@
 <script setup>
+import { dataUrl } from "../../services/imageService"
 import { reactive, computed } from "vue"
 import { publicationService } from "../../services/publicationService"
-import { useRouter } from "vue-router";
+import { useRouter } from "vue-router"; 
 
 // Kenttiä voi muuttaa tekstikentissä
 const publicationData = reactive({
@@ -14,13 +15,17 @@ const publicationData = reactive({
 
 const router = useRouter()
 
+const isDataUrl = computed(() => {
+    return dataUrl.value.startsWith("data:image")
+})
+
 // Palauttaa objektin
 const validationObject = computed(() => {
 
     // Nämä arvot ovat true tai false
     const titleValidation = publicationData.title.length > 2
     const descriptionValidation = publicationData.description.length < 1000
-    const urlValidation = publicationData.url.startsWith("https://")
+    const urlValidation = publicationData.url.startsWith("https://") || isDataUrl.value == true
 
     return {
         // Jos true niin "OK", muulloin toinen vaihtoehto
@@ -34,6 +39,10 @@ const validationObject = computed(() => {
 const createNewPublication = async () => {
 
     if(!validationObject.value.isAllValid) return
+
+    if(isDataUrl.value == true){
+        publicationData.url = dataUrl
+    }
 
     const {data, error} = await publicationService.usePost(publicationData)
 
@@ -61,6 +70,10 @@ const createNewPublication = async () => {
     <label><b>URL</b></label>
     <small>{{ validationObject.urlValidation }}</small>
     <input v-model="publicationData.url" type="text">
+    <br>
+        tai
+    <br>
+        <router-link to="/modifyImage">lisää kuva tiedostosta</router-link>
     <br>
     <button :disabled="!validationObject.isAllValid" @click="createNewPublication">Lähetä</button>  
 </template>
