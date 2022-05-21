@@ -50,6 +50,7 @@ const createNewPublication = async () => {
         publicationData.title = ""
         publicationData.description = ""
         publicationData.url = ""
+        dataUrl.value = ""
 
         router.push('/')
     }
