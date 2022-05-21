@@ -49,10 +49,10 @@ const darkMode = () => {
     <slot></slot>
     <NotificationContainer></NotificationContainer>
     <button v-if="width>600" class="dark-button" @click="darkMode">
-        Dark Mode
+        Dark<br>Mode
     </button> 
     <button v-else class="dark-button-mobile" @click="darkMode">
-        DM
+        D<br>M
     </button>
     <div v-if="width<=600" class="nav-mobile">
         <NavigationBar></NavigationBar>
@@ -107,10 +107,11 @@ h1, h2 {
 
 .dark-button-mobile{
     border-radius: 8px;
-    top: 2%;
+    bottom: 2%;
     left: 2%;
     position: fixed;
     background-color: v-bind('color2');
     color: v-bind('color1');
+    z-index: 40;
 }
 </style>

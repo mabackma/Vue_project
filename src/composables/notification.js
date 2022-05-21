@@ -1,4 +1,3 @@
-import { remove } from '@vue/shared'
 import {readonly, ref} from 'vue'
 
 const notificationData = ref({})
