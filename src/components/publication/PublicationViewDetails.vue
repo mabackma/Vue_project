@@ -12,7 +12,10 @@ const {data, error, isFinished} = publicationService.useGetById(props.publicatio
 </script>
 
 <template>
-    <h2>{{data.publication.title}}</h2>
+    <div v-if="data.publication.description.length > 0">
+        <h2>Kuvaus:</h2>
+        <p>{{data.publication.description}}</p>
+    </div>
     <div v-if="error">Tapahtui virhe!</div>
     <div v-else-if="!isFinished">Ladataan...</div>
     <div v-else-if="data">
