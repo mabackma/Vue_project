@@ -88,7 +88,6 @@ const setImageData = () => {
     dataUrl.value = canvasElement.value.toDataURL('image/jpeg', controls.quality / 10)
 }
 watch(controls, drawImage)
-  
 </script>
 
 <template> 
@@ -98,14 +97,19 @@ watch(controls, drawImage)
           	<label v-if="isImageSet">Uusi koko kilotavuina: {{ (dataUrl.length / 1000).toFixed(2) }}</label>
             <input type="file" class="file" @change="handleFileInput" />
         </div>
-
+        
         <template v-if="isImageSet">
             <div class="canvas-container">
                 <canvas ref="canvasElement"></canvas>
                 <img class="preview" :src="dataUrl">
 
                 <button class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
-                <button class="myButton" @click="router.push('/create')">lisää kuva</button>
+
+                
+                <label v-if="(dataUrl.length / 1000).toFixed(2) < 200">Koko on ok!</label>
+                <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
+                <label v-else>Kuvan koko on liian suuri ({{(dataUrl.length / 1000).toFixed(2)}}Kt)</label>
+                
                 <div v-if="controls.show" @pointerup="setImageData" class="controls">
                     <label>Laatu: {{ controls.quality }}</label>
                     <input type="range" min="1" max="10" v-model="controls.quality" />
@@ -147,6 +151,7 @@ watch(controls, drawImage)
 
                     <label>Hue: {{ controls.hueRotate }}</label>
                     <input type="range" min="0" max="360" step="1" v-model="controls.hueRotate" />
+                    
                     <button @click="controls.show = !controls.show">Sulje</button>
                 </div>
             </div>
@@ -192,7 +197,7 @@ canvas {
     color: black;
     -webkit-box-shadow: 0px 25px 21px 1px rgba(0, 0, 0, 0.29);
     box-shadow: 0px 25px 21px 1px rgba(0, 0, 0, 0.29);
-    bottom: 20px;
+    bottom: 50px;
     position: fixed;
     padding: 15px;
     display: flex;
@@ -207,7 +212,7 @@ button {
 }
 
 .myButton{
-    width: 50%;
+    width: 39%;
     margin: 10px;
 }
 </style>
