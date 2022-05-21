@@ -1,6 +1,6 @@
 <script setup>
 import { dataUrl } from "../../services/imageService" 
-import { reactive, ref, computed, watch, nextTick } from "vue"
+import { reactive, ref, computed, watch, nextTick, onMounted, onUnmounted } from "vue"
 import { useRouter } from "vue-router";
 
 // Tätä tarvitaan kun palataan PublicationCreate näkymään
@@ -88,6 +88,22 @@ const setImageData = () => {
     dataUrl.value = canvasElement.value.toDataURL('image/jpeg', controls.quality / 10)
 }
 watch(controls, drawImage)
+
+// Seurataan ikkunan leveyttä. Kuvaa ei voi muokata mobiiliversiossa.
+const width = ref(0)
+
+const setScreenWidth = ()=>{
+    width.value = window.innerWidth
+}
+
+onMounted(()=>{
+    setScreenWidth()
+    window.addEventListener('resize', setScreenWidth)
+})
+
+onUnmounted(()=>{
+    window.removeEventListener('resize', setScreenWidth)
+})
 </script>
 
 <template> 
@@ -102,9 +118,8 @@ watch(controls, drawImage)
             <div class="canvas-container">
                 <canvas ref="canvasElement"></canvas>
                 <img class="preview" :src="dataUrl">
-
-                <button class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
-
+                <br>
+                <button v-if="width>600" class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
                 
                 <label v-if="(dataUrl.length / 1000).toFixed(2) < 200">Koko on ok!</label>
                 <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
@@ -198,6 +213,7 @@ canvas {
     -webkit-box-shadow: 0px 25px 21px 1px rgba(0, 0, 0, 0.29);
     box-shadow: 0px 25px 21px 1px rgba(0, 0, 0, 0.29);
     bottom: 50px;
+    left: 50px;
     position: fixed;
     padding: 15px;
     display: flex;
