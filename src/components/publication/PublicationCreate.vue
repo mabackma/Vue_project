@@ -43,13 +43,16 @@ const createNewPublication = async () => {
     if(isDataUrl.value == true){
         publicationData.url = dataUrl
     }
-
+    
     const {data, error} = await publicationService.usePost(publicationData)
+
+    console.log("visibility: " + publicationData.visibility)
 
     if(data.value && !error.value){
         publicationData.title = ""
         publicationData.description = ""
         publicationData.url = ""
+        publicationData.visibility = 2
         dataUrl.value = ""
 
         router.push('/')
@@ -83,7 +86,16 @@ const createNewPublication = async () => {
             Tiedosto lisätty
         <br>
         <button @click="dataUrl = ''">Peruuta</button>
-    </div>
+    </div> 
+    <form>
+        <p><b>Näkyvyys:</b></p>
+        <input type="radio" name="visibility" v-model="publicationData.visibility" value="0">
+        <label>vain itse ja adminit</label><br>
+        <input type="radio" name="visibility" v-model="publicationData.visibility" value="1">
+        <label>vain kirjautuneet</label><br>
+        <input type="radio" name="visibility" v-model="publicationData.visibility" value="2">
+        <label>julkinen</label>
+    </form>
     <br>
     <button :disabled="!validationObject.isAllValid" @click="createNewPublication">Lähetä</button>  
 </template>
