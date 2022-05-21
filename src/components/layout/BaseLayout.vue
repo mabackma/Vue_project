@@ -20,6 +20,7 @@ onUnmounted(()=>{
 
 const color1 = ref('white')
 const color2 = ref('black')
+const linkColor = ref('blue')
 
 // Dark mode, color1 on taustaväri ja color2 on tekstiväri
 const darkMode = () => {
@@ -29,12 +30,14 @@ const darkMode = () => {
     {
         color1.value = '#202020'
         color2.value = 'white'
+        linkColor.value = 'limegreen'
     }
     // Muutetaan light modeen
     else
     {
         color1.value = 'white'
         color2.value = 'black'
+        linkColor.value = 'blue'
     }
     
 }
@@ -113,5 +116,9 @@ h1, h2 {
     background-color: v-bind('color2');
     color: v-bind('color1');
     z-index: 40;
+}
+
+a{
+    color: v-bind('linkColor');
 }
 </style>

@@ -53,7 +53,7 @@ const logout = ()=>{
  
 <style scoped>
 .icon {
-    color: red;
+    color: darkcyan;
     font-size: 28px;
 }
 
