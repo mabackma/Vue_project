@@ -96,13 +96,13 @@ h1, h2 {
     background-color: v-bind(color1);
     width: 100%;
     bottom: 0px;
-    color: red;
+    color: darkcyan;
 }
 
 .dark-button{
     border-radius: 8px;
     top: 13%;
-    left: 5%;
+    left: 2%;
     position: fixed;
     background-color: v-bind('color2');
     color: v-bind('color1');
