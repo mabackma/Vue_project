@@ -69,12 +69,30 @@ const createNewPublication = async () => {
     <br>
     <label><b>URL</b></label>
     <small>{{ validationObject.urlValidation }}</small>
-    <input v-model="publicationData.url" type="text">
-    <br>
-        tai
-    <br>
-        <router-link to="/modifyImage">lisää kuva tiedostosta</router-link>
+    <div v-if="!isDataUrl">
+        <input v-model="publicationData.url" type="text">
+        <br>
+            tai
+        <br>
+            <router-link to="/modifyImage">lisää kuva tiedostosta</router-link>
+        <br>
+    </div>
+    <div v-else>
+        <br>
+            Tiedosto lisätty
+        <br>
+        <button @click="dataUrl = ''">Peruuta</button>
+    </div>
     <br>
     <button :disabled="!validationObject.isAllValid" @click="createNewPublication">Lähetä</button>  
 </template>
+
+<style scoped>
+div{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+</style>
+
  

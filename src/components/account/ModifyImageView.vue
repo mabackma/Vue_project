@@ -1,6 +1,5 @@
 <script setup>
-import { dataUrl } from "../../services/imageService"
-import { isAuth } from "../../store";
+import { dataUrl } from "../../services/imageService" 
 import { reactive, ref, computed, watch, nextTick } from "vue"
 import { useRouter } from "vue-router";
 
@@ -92,9 +91,8 @@ watch(controls, drawImage)
   
 </script>
 
-<template>
-    <div v-if="!isAuth">Et ole kirjautunut sisään</div>
-    <div v-else class="image-editor">
+<template> 
+    <div class="image-editor">
         <div class="file-input">
             <label>Valitse kuva {{ fileNameAndSize }}</label>
           	<label v-if="isImageSet">Uusi koko kilotavuina: {{ (dataUrl.length / 1000).toFixed(2) }}</label>
@@ -106,8 +104,8 @@ watch(controls, drawImage)
                 <canvas ref="canvasElement"></canvas>
                 <img class="preview" :src="dataUrl">
 
-                <button @click="controls.show = !controls.show">Näytä kontrollit</button>
-                <button @click="router.push('/create')">lisää kuva</button>
+                <button class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
+                <button class="myButton" @click="router.push('/create')">lisää kuva</button>
                 <div v-if="controls.show" @pointerup="setImageData" class="controls">
                     <label>Laatu: {{ controls.quality }}</label>
                     <input type="range" min="1" max="10" v-model="controls.quality" />
@@ -206,5 +204,10 @@ canvas {
 }
 button {
     width: 100%;
+}
+
+.myButton{
+    width: 50%;
+    margin: 10px;
 }
 </style>
