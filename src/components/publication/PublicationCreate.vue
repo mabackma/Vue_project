@@ -83,9 +83,8 @@ const createNewPublication = async () => {
         <br>
     </div>
     <div v-else>
-        <br>
-            Tiedosto lisätty
-        <br>
+        <label v-if="(dataUrl.length / 1000).toFixed(2) >= 200">Tiedosto on liian suuri</label>
+        <label v-else>Tiedosto lisätty</label>
         <button @click="dataUrl = ''">Peruuta</button>
     </div> 
     <form>
@@ -98,7 +97,7 @@ const createNewPublication = async () => {
         <label>julkinen</label>
     </form>
     <br>
-    <button :disabled="!validationObject.isAllValid" @click="createNewPublication">Lähetä</button>  
+    <button :disabled="!validationObject.isAllValid || (dataUrl.length / 1000).toFixed(2) >= 200" @click="createNewPublication">Lähetä</button>  
 </template>
 
 <style scoped>
