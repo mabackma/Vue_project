@@ -119,12 +119,16 @@ onUnmounted(()=>{
                 <canvas ref="canvasElement"></canvas>
                 <img class="preview" :src="dataUrl">
                 <br>
-                <button v-if="width>600" class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
-                
-                <label v-if="(dataUrl.length / 1000).toFixed(2) < 200">Koko on ok!</label>
-                <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
-                <label v-else>Kuvan koko on liian suuri ({{(dataUrl.length / 1000).toFixed(2)}}Kt)</label>
-                
+                <div v-if="width>600">
+                    <button class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
+                    <label v-if="(dataUrl.length / 1000).toFixed(2) < 200">Koko on ok!</label>
+                    <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
+                    <label v-else>Kuvan koko on liian suuri ({{(dataUrl.length / 1000).toFixed(2)}}Kt)</label>
+                </div>
+                <div v-else>
+                    <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
+                    <label v-else>Kuvan koko on liian suuri</label>
+                </div>
                 <div v-if="controls.show" @pointerup="setImageData" class="controls">
                     <label>Laatu: {{ controls.quality }}</label>
                     <input type="range" min="1" max="10" v-model="controls.quality" />
@@ -230,5 +234,6 @@ button {
 .myButton{
     width: 39%;
     margin: 10px;
+    bottom: 13%;
 }
 </style>
