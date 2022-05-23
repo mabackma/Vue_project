@@ -119,13 +119,13 @@ onUnmounted(()=>{
                 <canvas ref="canvasElement"></canvas>
                 <img class="preview" :src="dataUrl">
                 <br>
-                <div v-if="width>600">
+                <div class="modify" v-if="width>600">
                     <button class="myButton" @click="controls.show = !controls.show">Näytä kontrollit</button>
                     <label v-if="(dataUrl.length / 1000).toFixed(2) < 200">Koko on ok!</label>
                     <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
                     <label v-else>Kuvan koko on liian suuri ({{(dataUrl.length / 1000).toFixed(2)}}Kt)</label>
                 </div>
-                <div v-else>
+                <div class="modify" v-else>
                     <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
                     <label v-else>Kuvan koko on liian suuri</label>
                     <br><br><br><br>
@@ -236,5 +236,11 @@ button {
     width: 39%;
     margin: 10px;
     bottom: 13%;
+}
+
+.modify{ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 </style>
