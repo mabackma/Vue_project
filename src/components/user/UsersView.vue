@@ -17,7 +17,7 @@ watch(isAuth, ()=>{
 </script>
  
 <template>
-    <router-link v-if="isAuth" to="/account">Muokkaa omia tietoja</router-link>
+    <router-link v-if="isAuth" to="/account"><u>Muokkaa omia tietoja</u></router-link>
     <h1>Käyttäjät</h1>
     <div v-if="error">Tapahtui virhe</div>
     <div v-else-if="!isFinished">Ladataan...</div>

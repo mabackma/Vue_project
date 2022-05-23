@@ -63,4 +63,7 @@ input, label{
     margin-top: 6px;
 }
 
+a:link { 
+    text-decoration: underline; 
+}
 </style>

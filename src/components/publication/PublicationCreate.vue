@@ -79,7 +79,7 @@ const createNewPublication = async () => {
         <br>
             tai
         <br>
-            <router-link to="/modifyImage">lisää kuva tiedostosta</router-link>
+            <router-link to="/modifyImage"><u>lisää kuva tiedostosta</u></router-link>
         <br>
     </div>
     <div v-else>

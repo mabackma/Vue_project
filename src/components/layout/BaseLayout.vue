@@ -120,5 +120,6 @@ h1, h2 {
 
 a{
     color: v-bind('linkColor');
+    text-decoration: none;
 }
 </style>
