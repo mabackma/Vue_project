@@ -69,6 +69,7 @@ const darkMode = () => {
 h1, h2 {
     margin: 20px;
     text-decoration: underline;
+    text-align: center;
 }
 .container {
     display: flex;
@@ -121,5 +122,10 @@ h1, h2 {
 a{
     color: v-bind('linkColor');
     text-decoration: none;
+}
+
+p{ 
+    width: 400px;
+    word-wrap: break-word; 
 }
 </style>
