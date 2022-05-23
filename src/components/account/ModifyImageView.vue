@@ -128,6 +128,7 @@ onUnmounted(()=>{
                 <div v-else>
                     <button v-if="(dataUrl.length / 1000).toFixed(2) < 200" class="myButton" @click="router.push('/create')">lisää kuva</button>
                     <label v-else>Kuvan koko on liian suuri</label>
+                    <br><br><br><br>
                 </div>
                 <div v-if="controls.show" @pointerup="setImageData" class="controls">
                     <label>Laatu: {{ controls.quality }}</label>
