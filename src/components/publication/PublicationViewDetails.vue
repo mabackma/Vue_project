@@ -23,3 +23,10 @@ const {data, error, isFinished} = publicationService.useGetById(props.publicatio
     </div>
 </template>
 
+<style scoped>
+p{ 
+    width: 400px;
+    word-wrap: break-word; 
+}
+</style>
+

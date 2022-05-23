@@ -123,9 +123,4 @@ a{
     color: v-bind('linkColor');
     text-decoration: none;
 }
-
-p{ 
-    width: 400px;
-    word-wrap: break-word; 
-}
 </style>
