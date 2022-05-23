@@ -72,9 +72,9 @@ const createNewPublication = async () => {
     <small>{{ validationObject.descriptionValidation }}</small>
     <input v-model="publicationData.description" type="text">
     <br>
-    <label><b>URL</b></label>
-    <small>{{ validationObject.urlValidation }}</small>
     <div v-if="!isDataUrl">
+        <label><b>URL</b></label>
+        <small>{{ validationObject.urlValidation }}</small>
         <input v-model="publicationData.url" type="text">
         <br>
             tai
