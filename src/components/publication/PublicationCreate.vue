@@ -1,5 +1,5 @@
 <script setup>
-import { dataUrl } from "../../services/imageService"
+import { dataUrl } from "../../store"
 import { reactive, computed } from "vue"
 import { publicationService } from "../../services/publicationService"
 import { useRouter } from "vue-router"; 

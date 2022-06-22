@@ -1,4 +1,4 @@
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useStorage } from "@vueuse/core"
 
 // Käytetään tätä jotta kirjautuminen säilyy kun päivitetään sivu
@@ -13,3 +13,5 @@ export const globalState = reactive({
 export const isAuth = computed(() =>{
     return globalState.accessToken != null
 })
+
+export const dataUrl = ref('tähän tulee image dataa') 
