@@ -1,4 +1,5 @@
-School project for posting pictures. 
+School project: Front-end for picture app. 
+
 
 # Vue 3 + Vite
 
