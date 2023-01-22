@@ -2,8 +2,8 @@ import { createFetch } from "@vueuse/core";
 import { globalState, isAuth } from "../store";
 
 export const useApi = createFetch({
-    baseUrl: 'https://vara.onrender.com/api',    // Laita tähän oma noSql kurssitehtävän osoite!
-    //baseUrl: 'https://nosql-flask-picure-app.onrender.com/api',
+    //baseUrl: 'https://vara.onrender.com/api',    // Laita tähän oma noSql kurssitehtävän osoite!
+    baseUrl: 'https://nosql-flask-picure-app.onrender.com/api',
     options: {
         beforeFetch({options}){
 
