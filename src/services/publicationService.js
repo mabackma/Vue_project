@@ -6,7 +6,7 @@ export const publicationService = {
     },
     useGetById(publicationId){
         return useApi(`/publications/${publicationId}`).json()  //haetaan back-endistä, eli osoitteesta
-    },                                                          //https://vara.onrender.com/api/publications/:publicationId
+    },                                                          //https://nosql-flask-picure-app.onrender.com/api/publications/:publicationId
     usePost(payload){
         return useApi('./publications').post(payload).json()
     }

@@ -5,7 +5,7 @@ import { setSuccess, setError } from '../composables/notification'
 
 export const authService = {
     async useLogin(payload){   // Tässä payloadina on credentials joka lähetetään back-endin osoitteeseen
-                               // https://vara.onrender.com/api/login
+                               // https://nosql-flask-picure-app.onrender.com/api/login
 
         // back-end tarkastus
         const {data, error} = await useApi('/login').post(payload).json()
