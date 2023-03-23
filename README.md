@@ -1,6 +1,4 @@
-School project: Front-end for picture app.
-
-Deployed at https://kuva-app-pictures-2022.onrender.com/
+School project: Front-end for picture app. 
 
 # Vue 3 + Vite
 
